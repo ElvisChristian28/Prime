@@ -1,0 +1,11 @@
+,Id,Name,Age,Country,Gender,Salary,Tax,New Income,Ranking
+6,6,Unknown,45,India,F,73000.0,20%,80300.0,1.0
+7,7,Ahmed Khan,38,India,M,68000.0,20%,74800.0,2.0
+2,2,Jane Smith,32,Canada,F,62000.0,20%,68200.0,3.5
+8,8,Rachel Lee,29,US,F,62000.0,20%,68200.0,3.5
+10,10,Emily Davis,31,US,U,58000.0,20%,63800.00000000001,5.0
+4,4,Maria Garcia,34,Spain,F,57889.0,10%,,6.0
+0,1,John Doe,29,US,M,55000.0,20%,60500.00000000001,7.0
+5,5,Li Wei,27,China,M,51000.0,20%,56100.00000000001,8.0
+3,3,Alex,32,US,U,47000.0,10%,51700.00000000001,9.0
+9,9,Carlos Ruiz,32,Mexico,M,45000.0,10%,49500.00000000001,10.0
