@@ -24,13 +24,13 @@ def findMissingAndRepeatedValues(grid):
         for key in dict1:
             if dict1[key] == 2:
                 output[0] == dict1[key]
-                break
         dict1 = sorted(dict1)
         rng = [i for i in range(min, max + 1)]
-        for i in dict1:
-            
-        print(dict1, max, min)                
+        for i in rng:
+            if i not in dict1:
+                output[1] == i
 
+        print(dict1, max, min, output)
 
 grid = [[9,1,7],[8,9,2],[3,4,6]]
 findMissingAndRepeatedValues(grid)
