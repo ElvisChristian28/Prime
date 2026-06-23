@@ -1,4 +1,4 @@
-def findMissingAndRepeatedValues(grid):
+def findMissingAndRepeatedValues(grid:list[int]):
         """
         :type grid: List[List[int]]
         :rtype: List[int]
