@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fleet Dashboard</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .stats { display: flex; gap: 20px; margin-bottom: 20px; }
+        .stat-box { padding: 20px; background: #f4f4f4; border-radius: 8px; }
+        table { width: 100%; border-collapse: collapse; }
+        th, td { padding: 10px; border-bottom: 1px solid #ddd; text-align: left; }
+        .offline { color: red; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <h1>Device Fleet Status</h1>
+    
+    <div class="stats">
+        <div class="stat-box">Total Devices: <span id="total">0</span></div>
+        <div class="stat-box">Offline: <span id="offline">0</span></div>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>IP Address</th>
+                <th>Status</th>
+                <th>CPU (%)</th>
+                <th>Temp (°C)</th>
+                <th>Last Updated</th>
+            </tr>
+        </thead>
+        <tbody id="device-table-body">
+            <!-- JavaScript will populate this -->
+        </tbody>
+    </table>
+
+    <script>
+        async function fetchData() {
+            const response = await fetch('/api/devices');
+            const data = await response.json();
+            
+            // Update summary stats
+            document.getElementById('total').innerText = data.total_devices;
+            document.getElementById('offline').innerText = data.offline_count;
+            
+            // Update table
+            const tbody = document.getElementById('device-table-body');
+            tbody.innerHTML = ''; // Clear old rows
+            
+            data.devices.forEach(device => {
+                const row = document.createElement('tr');
+                const isOffline = device.status === 'error' ? 'offline' : '';
+                
+                row.innerHTML = `
+                    <td>${device.device_ip}</td>
+                    <td class="${isOffline}">${device.status}</td>
+                    <td>${device.cpu_usage || 'N/A'}</td>
+                    <td>${device.temperature || 'N/A'}</td>
+                    <td>${device.last_updated}</td>
+                `;
+                tbody.appendChild(row);
+            });
+        }
+
+        // Fetch immediately, then every 10 seconds
+        fetchData();
+        setInterval(fetchData, 10000);
+    </script>
+</body>
+</html>
