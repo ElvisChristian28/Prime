@@ -73,14 +73,12 @@ class Agent():
         if is_training:
             # "async" enables Multiprocessing across CPU cores
             env = gymnasium.make_vec("FlappyBird-v0", num_envs=num_envs, vectorization_mode="async")
-            num_state = env.single_observation_space.shape[0]
-            num_action = env.single_action_space.n
         else:
             # Run single environment for evaluation
             env = gymnasium.make("FlappyBird-v0", render_mode="human" if render else None)
-            num_state = env.observation_space.shape[0]
-            num_action = env.action_space.n
-
+            
+        num_state = env.observation_space.shape[0]
+        num_action = env.action_space.n
         policy_dqn = DQN(num_state, num_action).to(device)
 
         if is_training:
